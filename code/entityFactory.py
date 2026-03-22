@@ -3,6 +3,7 @@
 # code/entityFactory.py
 from assets.Const import WIN_WIDTH, WIN_HEIGHT
 from code.background import Background
+from code.enemy import Enemy
 from code.player import Player
 
 class EntityFactory:
@@ -16,4 +17,6 @@ class EntityFactory:
                 list_bg.append(Background("img_fase1", position=(WIN_WIDTH,0)))
                 return list_bg
             case "Player1":
-                return Player("Player1", position=(10, WIN_HEIGHT))
+                return Player("Player1", position=(10, WIN_HEIGHT   ))
+            case "Zombie2":
+                return Enemy("Zombie2", position=(-100, WIN_HEIGHT))

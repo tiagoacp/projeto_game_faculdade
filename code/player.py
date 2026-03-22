@@ -15,6 +15,11 @@ class Player(Entity):
         self.name = name
         self.speed = 3  # Velocidade de movimento
 
+        self.health = 10
+        self.damage = 5
+        self.is_shooting = False
+        self.projectile_spawn_point = (0, 0)
+
         # Carrega as spritesheets
         self.image_idle = pygame.image.load("./assets/Player_1/Idle.png").convert_alpha()
         self.image_walk = pygame.image.load("./assets/Player_1/Walk.png").convert_alpha()
@@ -77,13 +82,29 @@ class Player(Entity):
         if not self.facing_right:
             self.surf = pygame.transform.flip(self.surf, True, False)
 
+        self.mask = pygame.mask.from_surface(self.surf)
+
     def move(self):
         keys = pygame.key.get_pressed()
+
+        # Verifica o disparo
+        if keys[pygame.K_SPACE] and self.state != "Shoot":
+            self.state = "Shoot"
+            self.animation_timer = 0
+            self.is_shooting = True  # Avisa o level que atiramos
+            return
 
         # 2. Verifica se a tecla de espaço foi premida para atirar
         if keys[pygame.K_SPACE] and self.state != "Shoot":
             self.state = "Shoot"
             self.animation_timer = 0  # Reinicia o relógio para começar a animação do início
+            gun_x_offset = 55
+            gun_y_offset = -22
+
+            if self.facing_right:
+                self.projectile_spawn_point = (self.rect.left + gun_x_offset, self.rect.top + gun_y_offset)
+            else:
+                self.projectile_spawn_point = (self.rect.right - gun_x_offset, self.rect.top + gun_y_offset)
             return  # Sai da função de movimento para o personagem não andar enquanto dispara
 
         # Só permite andar se não estiver a atirar

@@ -4,9 +4,6 @@ from abc import ABC, abstractmethod
 
 import pygame.image
 
-
-
-
 class Entity(ABC):
 
 
