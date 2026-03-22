@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="com.obiscr.chatgpt.settings.EasyCodeState">
+    <option name="projectFiles" value="$PROJECT_DIR$/assets/Const.py;C:/Users/Tiago/PycharmProjects/PythonProject/code/__init__.py;C:/Users/Tiago/PycharmProjects/PythonProject/code/background.py;C:/Users/Tiago/PycharmProjects/PythonProject/code/enemy.py;C:/Users/Tiago/PycharmProjects/PythonProject/code/entity.py;C:/Users/Tiago/PycharmProjects/PythonProject/code/entityFactory.py;C:/Users/Tiago/PycharmProjects/PythonProject/code/game.py;C:/Users/Tiago/PycharmProjects/PythonProject/code/level.py;C:/Users/Tiago/PycharmProjects/PythonProject/code/menu.py;C:/Users/Tiago/PycharmProjects/PythonProject/code/player.py;C:/Users/Tiago/PycharmProjects/PythonProject/main.py" />
+  </component>
+</project>
