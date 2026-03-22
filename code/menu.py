@@ -19,7 +19,7 @@ class Menu:
 
     def run(self, ):
         menu_option = 0
-        pygame.mixer.music.load("./assets/Menu_son.mp3.wav")
+        pygame.mixer.music.load("./assets/Menu_son.mp3")
         pygame.mixer_music.play(-1)
         pygame.mixer.music.set_volume(0.1)
         while True:
