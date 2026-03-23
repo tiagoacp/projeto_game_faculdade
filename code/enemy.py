@@ -15,22 +15,17 @@ class Enemy(Entity):
         self.speed = 1.5
         self.damage = 1  # Dano que causa ao jogador
         self.attack_cooldown = 0
-
         # Carrega imagens do Zombie_2
         self.image_walk = pygame.image.load("./assets/Zombie_2/Walk.png").convert_alpha()
         self.image_attack = pygame.image.load("./assets/Zombie_2/Attack.png").convert_alpha()
-
         # ATENÇÃO: Se o seu zumbi ficar "piscando", ajuste a quantidade de quadros destas animações
         self.frames_walk = 10
         self.frames_attack = 5
-
         self.current_frame = 0
         self.animation_timer = 0
         self.animation_speed = 0.15
-
         self.state = "Walk"
         self.facing_right = True  # Zumbi nasce na esquerda e vai para a direita
-
         self.frame_width = self.image_walk.get_width() // self.frames_walk
         self.frame_height = self.image_walk.get_height()
         self.surf = pygame.Surface((self.frame_width, self.frame_height), pygame.SRCALPHA)

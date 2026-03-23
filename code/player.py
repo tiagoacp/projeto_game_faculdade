@@ -16,7 +16,6 @@ class Player(Entity):
         self.speed = 3  # Velocidade de movimento
 
         self.health = 10
-        self.damage = 5
         self.is_shooting = False
         self.projectile_spawn_point = (0, 0)
 
@@ -87,25 +86,19 @@ class Player(Entity):
     def move(self):
         keys = pygame.key.get_pressed()
 
-        # Verifica o disparo
         if keys[pygame.K_SPACE] and self.state != "Shoot":
             self.state = "Shoot"
             self.animation_timer = 0
-            self.is_shooting = True  # Avisa o level que atiramos
-            return
 
-        # 2. Verifica se a tecla de espaço foi premida para atirar
-        if keys[pygame.K_SPACE] and self.state != "Shoot":
-            self.state = "Shoot"
-            self.animation_timer = 0  # Reinicia o relógio para começar a animação do início
+            # --- ATUALIZA A POSIÇÃO E AVISA QUE ATIROU ---
+            self.is_shooting = True
             gun_x_offset = 55
             gun_y_offset = -22
-
             if self.facing_right:
                 self.projectile_spawn_point = (self.rect.left + gun_x_offset, self.rect.top + gun_y_offset)
             else:
                 self.projectile_spawn_point = (self.rect.right - gun_x_offset, self.rect.top + gun_y_offset)
-            return  # Sai da função de movimento para o personagem não andar enquanto dispara
+            return
 
         # Só permite andar se não estiver a atirar
         if self.state != "Shoot":

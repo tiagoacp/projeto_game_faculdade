@@ -7,28 +7,33 @@ from assets.Const import WIN_WIDTH
 
 class Projectile(Entity):
     def __init__(self, position: tuple, facing_right: bool):
-        # Em vez de carregar uma imagem, criamos um retângulo de 10x4 pixels
+        # Desenhando o projétil via código (um retângulo amarelo)
         self.surf = pygame.Surface((10, 4))
-        self.surf.fill((255, 200, 0))  # Cor RGB: Amarelo/Laranja
-
+        self.surf.fill((255, 200, 0))
         self.rect = self.surf.get_rect(center=position)
 
-        # Novos atributos
         self.name = "Projectile"
-        self.health = 1  # Vida de 1, para ser destruído ao bater
-        self.damage = 10  # Dano que causa ao Zumbi
-        self.speed = 15  # Velocidade do tiro (aumentei um pouco para ficar mais real)
+        self.health = 1  # Para ser destruído ao bater
+        self.damage = 5  # Dano que causa
+        self.speed = 15
         self.facing_right = facing_right
 
+        # --- NOVO: Lógica de distância ---
+        self.start_x = position[0]
+        self.max_distance = 350  # Distância máxima que o tiro vai percorrer (ajuste como quiser)
+
     def update(self):
-        # Movimento
+        # Movimentação
         if self.facing_right:
             self.rect.x += self.speed
         else:
             self.rect.x -= self.speed
 
-        # Remove o tiro se ele sair da tela
+        # Destrói se sair da tela OU se passar da distância máxima
         if self.rect.right < 0 or self.rect.left > WIN_WIDTH:
+            self.health = 0
+
+        if abs(self.rect.x - self.start_x) > self.max_distance:
             self.health = 0
 
     def move(self):
